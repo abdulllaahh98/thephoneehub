@@ -1,0 +1,19 @@
+﻿--- STEP 4: Add Product to Cart ---
+
+   ErrorException 
+
+  Attempt to read property "id" on null
+
+  at C:\xampp\htdocs\anti-phone\backend\test_e2e_flow.php:24
+     20Γûò echo "--- STEP 4: Add Product to Cart ---\n";
+     21Γûò $product = Product::find(11);
+     22Γûò $cartController = app(App\Http\Controllers\Api\CartController::class);
+     23Γûò $request = new \Illuminate\Http\Request([
+  Γ₧£  24Γûò     'product_id' => $product->id,
+     25Γûò     'quantity' => 1,
+     26Γûò     'colour' => 'Black', // Optional depending on controller
+     27Γûò     'storage' => '128GB' // Optional
+     28Γûò ]);
+
+  1   C:\xampp\htdocs\anti-phone\backend\test_e2e_flow.php:24
+      Illuminate\Foundation\Bootstrap\HandleExceptions::Illuminate\Foundation\Bootstrap\{closure}("Attempt to read property "id" on null", "C:\xampp\htdocs\anti-phone\backend\test_e2e_flow.php")
