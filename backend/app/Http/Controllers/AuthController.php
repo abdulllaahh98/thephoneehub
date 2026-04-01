@@ -49,9 +49,16 @@ class AuthController extends Controller
             'phone' => $request->phone,
             'password' => Hash::make($request->password, ['rounds' => 12]),
             'role' => 'customer',
+<<<<<<< HEAD
         ]);
 
         return $this->issueTokens($user, 'Registration successful', 210);
+=======
+            'is_verified' => true, // Automatically verify for smoother onboarding
+        ]);
+
+        return $this->issueTokens($user, 'Registration successful', 201);
+>>>>>>> a45f52b (payment-integrated)
     }
 
     /**
@@ -128,7 +135,11 @@ class AuthController extends Controller
                     ]);
                 }
             }
+<<<<<<< HEAD
             return $this->response(false, 'Invalid email or password', null, null, 401);
+=======
+            return $this->response(false, 'Invalid email or password', null, ['auth' => ['Invalid email or password']], 401);
+>>>>>>> a45f52b (payment-integrated)
         }
 
         // Reset fail count on success
@@ -273,4 +284,38 @@ class AuthController extends Controller
     {
         return $this->response(true, 'User details retrieved', auth('api')->user());
     }
+<<<<<<< HEAD
+=======
+
+    /**
+     * Update profile details and optionally password.
+     */
+    public function updateProfile(Request $request)
+    {
+        $user = auth('api')->user();
+        if (!$user) {
+            return $this->response(false, 'Unauthorized', null, null, 401);
+        }
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'sometimes|string|max:255',
+            'email' => 'sometimes|string|email|max:255|unique:users,email,' . $user->id,
+            'phone' => 'sometimes|string|max:15|unique:users,phone,' . $user->id,
+            'password' => 'sometimes|string|min:6',
+        ]);
+
+        if ($validator->fails()) {
+            return $this->response(false, 'Validation failed', null, $validator->errors(), 400);
+        }
+
+        $payload = $request->only(['name', 'email', 'phone']);
+        if ($request->filled('password')) {
+            $payload['password'] = Hash::make($request->password, ['rounds' => 12]);
+        }
+
+        $user->update($payload);
+
+        return $this->response(true, 'Profile updated successfully', $user->fresh());
+    }
+>>>>>>> a45f52b (payment-integrated)
 }

@@ -12,7 +12,11 @@ Since your order is now delivered, your 6-month warranty has been automatically 
 View My Warranties
 @endcomponent
 
+<<<<<<< HEAD
 If you have any issues with your delivery, please contact us at support@thephonehub.in.
+=======
+If you have any issues with your delivery, please contact us at support@phonehubx.com.
+>>>>>>> a45f52b (payment-integrated)
 
 Thanks,  
 {{ config('app.name') }}

@@ -67,10 +67,18 @@ const ProductDetailPage = () => {
 
   const price = parseFloat(product.price);
   const mrp = parseFloat(product.mrp);
+<<<<<<< HEAD
   const primaryImage = product.images?.find(i => i.is_primary)?.image_path;
   const BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1').replace('/api/v1', '');
   const ogImage = primaryImage
     ? `${BASE_URL}/storage/${primaryImage}`
+=======
+  const primaryImage = product.images?.find(i => i.is_primary)?.image_url
+    || product.images?.find(i => i.is_primary)?.image_path;
+  const BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1').replace('/api/v1', '');
+  const ogImage = primaryImage
+    ? (primaryImage.startsWith('http') ? primaryImage : `${BASE_URL}/storage/${primaryImage}`)
+>>>>>>> a45f52b (payment-integrated)
     : null;
 
   const tabs = [
@@ -87,8 +95,13 @@ const ProductDetailPage = () => {
   return (
     <div className="bg-white min-h-screen">
       <Helmet>
+<<<<<<< HEAD
         <title>{`${product.brand} ${product.model} ${product.storage} — Buy Refurbished at ₹${price.toLocaleString('en-IN')} | ThePhoneHub.in`}</title>
         <meta name="description" content={`Buy certified refurbished ${product.brand} ${product.model} ${product.storage} in ${product.condition} condition at ₹${price.toLocaleString('en-IN')}. 6-month warranty. Cash on Delivery. ThePhoneHub.in`} />
+=======
+        <title>{`${product.brand} ${product.model} ${product.storage} — Buy Refurbished at ₹${price.toLocaleString('en-IN')} | PhoneHubX`}</title>
+        <meta name="description" content={`Buy certified refurbished ${product.brand} ${product.model} ${product.storage} in ${product.condition} condition at ₹${price.toLocaleString('en-IN')}. 6-month warranty. Cash on Delivery. PhoneHubX`} />
+>>>>>>> a45f52b (payment-integrated)
         {ogImage && <meta property="og:image" content={ogImage} />}
       </Helmet>
 
@@ -125,8 +138,13 @@ const ProductDetailPage = () => {
                 key={t.key}
                 onClick={() => setActiveTab(t.key)}
                 className={`px-6 py-4 text-xs font-black uppercase tracking-widest whitespace-nowrap border-b-2 transition-all ${activeTab === t.key
+<<<<<<< HEAD
                     ? 'border-orange text-orange'
                     : 'border-transparent text-gray-400 hover:text-gray-700'
+=======
+                  ? 'border-orange text-orange'
+                  : 'border-transparent text-gray-400 hover:text-gray-700'
+>>>>>>> a45f52b (payment-integrated)
                   }`}
               >{t.label}</button>
             ))}
@@ -135,7 +153,11 @@ const ProductDetailPage = () => {
 
         {/* Tab Content */}
         <div className="pb-16">
+<<<<<<< HEAD
           {activeTab === 'specs' && <TechnicalSpecs specs={product.specs} />}
+=======
+          {activeTab === 'specs' && <TechnicalSpecs specs={product.specs} description={product.description} />}
+>>>>>>> a45f52b (payment-integrated)
           {activeTab === 'inbox' && <WhatInTheBox accessories={product.accessories} />}
           {activeTab === 'warranty' && <WarrantyReturns />}
         </div>
@@ -156,8 +178,13 @@ const ProductDetailPage = () => {
           onClick={handleMobileAddToCart}
           disabled={product.stock_qty === 0}
           className={`flex items-center gap-2 px-6 py-3.5 rounded-2xl font-black text-sm uppercase tracking-wide transition-all ${product.stock_qty === 0
+<<<<<<< HEAD
               ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
               : 'bg-orange text-white hover:bg-orange/90 shadow-lg shadow-orange/30'
+=======
+            ? 'bg-gray-100 text-gray-400 cursor-not-allowed'
+            : 'bg-orange text-white hover:bg-orange/90 shadow-lg shadow-orange/30'
+>>>>>>> a45f52b (payment-integrated)
             }`}
         >
           <ShoppingCart className="h-4 w-4" />

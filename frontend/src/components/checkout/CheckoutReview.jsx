@@ -1,7 +1,16 @@
 import React from 'react';
+<<<<<<< HEAD
 import { ShoppingBag, MapPin, CreditCard, ChevronRight } from 'lucide-react';
 import useCartStore from '../../store/useCartStore';
 
+=======
+import { ShoppingBag, MapPin, CreditCard, ChevronRight, Eye, ShieldCheck } from 'lucide-react';
+import useCartStore from '../../store/useCartStore';
+
+const BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1')
+    .replace('/api/v1', '');
+
+>>>>>>> a45f52b (payment-integrated)
 const CheckoutReview = ({ onNext, onBack, orderData }) => {
     const { address, items, paymentInfo, total } = orderData;
     const { appliedCoupon } = useCartStore();
@@ -9,6 +18,16 @@ const CheckoutReview = ({ onNext, onBack, orderData }) => {
     const gst = Math.round((total - discount) * 0.18);
     const grandTotal = total - discount + gst;
 
+<<<<<<< HEAD
+=======
+    // Helper function to convert image URL
+    const getImageUrl = (imagePath) => {
+        if (!imagePath) return null;
+        if (imagePath.startsWith('http')) return imagePath;
+        return `${BASE_URL}/storage/${imagePath}`;
+    };
+
+>>>>>>> a45f52b (payment-integrated)
     return (
         <div className="space-y-6">
             <div className="bg-white rounded-3xl shadow-sm border border-gray-100 p-6 lg:p-10">
@@ -42,10 +61,17 @@ const CheckoutReview = ({ onNext, onBack, orderData }) => {
                         </div>
                         <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100">
                             <p className="font-black text-gray-900 uppercase">
+<<<<<<< HEAD
                                 {paymentInfo.method === 'online' ? 'Online Payment (Prepaid)' : 'Cash on Delivery'}
                             </p>
                             <p className="text-xs font-bold text-gray-400 mt-2">
                                 {paymentInfo.method === 'online' ? `Transaction ID: ${paymentInfo.payment_id}` : 'Pay at the time of delivery'}
+=======
+                                {paymentInfo.method === 'cashfree' ? 'Cashfree Payment (Prepaid)' : 'Cash on Delivery'}
+                            </p>
+                            <p className="text-xs font-bold text-gray-400 mt-2">
+                                {paymentInfo.method === 'cashfree' ? `Cashfree Order: ${paymentInfo.order_number || 'Pending'}` : 'Pay at the time of delivery'}
+>>>>>>> a45f52b (payment-integrated)
                             </p>
                             <div className="mt-4 flex items-center text-green-600">
                                 <ShieldCheck className="h-4 w-4 mr-1" />
@@ -66,7 +92,11 @@ const CheckoutReview = ({ onNext, onBack, orderData }) => {
                             <div key={item.id} className="flex items-center justify-between p-4 bg-gray-50 rounded-2xl">
                                 <div className="flex items-center space-x-4">
                                     <div className="w-12 h-12 bg-white rounded-lg p-1 border border-gray-100 flex-shrink-0">
+<<<<<<< HEAD
                                         <img src={item.image_url} alt={item.model} className="w-full h-full object-contain" />
+=======
+                                        <img src={getImageUrl(item.image || item.image_url)} alt={item.model} className="w-full h-full object-contain" />
+>>>>>>> a45f52b (payment-integrated)
                                     </div>
                                     <div>
                                         <p className="text-sm font-black text-gray-900">{item.model}</p>

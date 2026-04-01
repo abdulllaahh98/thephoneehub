@@ -25,7 +25,11 @@
     <div class="invoice-box">
         <table width="100%">
             <tr>
+<<<<<<< HEAD
                 <td><div class="logo">ThePhoneHub.in</div></td>
+=======
+                <td><div class="logo">PhoneHubX</div></td>
+>>>>>>> a45f52b (payment-integrated)
                 <td align="right"><div class="title">Tax Invoice</div></td>
             </tr>
         </table>
@@ -61,8 +65,13 @@
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $item->product_name }} ({{ $item->storage }} | {{ $item->colour }})</td>
                     <td align="center">{{ $item->quantity }}</td>
+<<<<<<< HEAD
                     <td align="right">{{ number_format($item->unit_price, 2) }}</td>
                     <td align="right">{{ number_format($item->line_total, 2) }}</td>
+=======
+                    <td align="right">Rs. {{ number_format($item->unit_price, 2) }}</td>
+                    <td align="right">Rs. {{ number_format($item->line_total, 2) }}</td>
+>>>>>>> a45f52b (payment-integrated)
                 </tr>
                 @endforeach
             </tbody>
@@ -72,6 +81,7 @@
             <table class="totals-table">
                 <tr>
                     <td>Subtotal:</td>
+<<<<<<< HEAD
                     <td align="right">{{ number_format($order->subtotal, 2) }}</td>
                 </tr>
                 <tr>
@@ -81,6 +91,17 @@
                 <tr>
                     <td>GST (18%):</td>
                     <td align="right">{{ number_format($order->gst_amount, 2) }}</td>
+=======
+                    <td align="right">Rs. {{ number_format($order->subtotal, 2) }}</td>
+                </tr>
+                <tr>
+                    <td>Coupon Discount:</td>
+                    <td align="right">-Rs. {{ number_format($order->discount, 2) }}</td>
+                </tr>
+                <tr>
+                    <td>GST (18%):</td>
+                    <td align="right">Rs. {{ number_format($order->gst_amount, 2) }}</td>
+>>>>>>> a45f52b (payment-integrated)
                 </tr>
                 <tr>
                     <td>Shipping:</td>
@@ -88,7 +109,11 @@
                 </tr>
                 <tr class="grand-total">
                     <td><strong>TOTAL:</strong></td>
+<<<<<<< HEAD
                     <td align="right"><strong>{{ number_format($order->grand_total, 2) }}</strong></td>
+=======
+                    <td align="right"><strong>Rs. {{ number_format($order->grand_total, 2) }}</strong></td>
+>>>>>>> a45f52b (payment-integrated)
                 </tr>
             </table>
         </div>
@@ -100,7 +125,11 @@
 
         <div class="footer">
             Warranty: 6 months from delivery date<br>
+<<<<<<< HEAD
             Support: support@thephonehub.in<br>
+=======
+            Support: support@phonehubx.com<br>
+>>>>>>> a45f52b (payment-integrated)
             <strong>Thank you for shopping with us!</strong>
         </div>
     </div>

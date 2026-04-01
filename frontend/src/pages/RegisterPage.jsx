@@ -28,10 +28,21 @@ const RegisterPage = () => {
             navigate('/account');
         } catch (err) {
             console.error('Registration full error:', err.response);
+<<<<<<< HEAD
             if (err.response?.status === 500) {
                 setError('Service is currently unavailable. Please ensure your Database (MySQL) is started in XAMPP.');
             } else {
                 const data = err.response?.data;
+=======
+            const status = err.response?.status;
+            const data = err.response?.data;
+
+            if (status === 500) {
+                setError('Service is currently unavailable. Please ensure your Database (MySQL) is started in XAMPP.');
+            } else if (status === 405) {
+                setError('Method Not Allowed: Please check if the API route is correct.');
+            } else {
+>>>>>>> a45f52b (payment-integrated)
                 let errorMessage = 'Registration failed. Please ensure your details are correct.';
                 if (data?.errors) {
                     errorMessage = typeof data.errors === 'string' ? data.errors : Object.values(data.errors).flat()[0];
@@ -48,7 +59,11 @@ const RegisterPage = () => {
     return (
         <div className="min-h-screen bg-gray-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
             <Helmet>
+<<<<<<< HEAD
                 <title>Create Account | ThePhoneHub.in</title>
+=======
+                <title>Create Account | PhoneHubX</title>
+>>>>>>> a45f52b (payment-integrated)
             </Helmet>
 
             <div className="max-w-md w-full space-y-8 bg-white p-10 rounded-3xl shadow-xl border border-gray-100">

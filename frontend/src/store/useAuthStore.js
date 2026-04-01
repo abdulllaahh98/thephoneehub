@@ -28,7 +28,11 @@ const useAuthStore = create(
             })),
         }),
         {
+<<<<<<< HEAD
             name: 'thephonehub-auth',
+=======
+            name: 'phonehubx-auth',
+>>>>>>> a45f52b (payment-integrated)
         }
     )
 );

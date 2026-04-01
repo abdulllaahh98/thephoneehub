@@ -6,10 +6,30 @@ import { Helmet } from 'react-helmet-async';
 import api from '../api/axios';
 import toast from 'react-hot-toast';
 
+<<<<<<< HEAD
+=======
+const BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1')
+    .replace('/api/v1', '');
+
+>>>>>>> a45f52b (payment-integrated)
 const OrderDetailPage = () => {
     const { id } = useParams();
     const [invoiceLoading, setInvoiceLoading] = useState(false);
 
+<<<<<<< HEAD
+=======
+    // Helper function to convert image URL
+    const getImageUrl = (item) => {
+        const direct = item?.product?.image_url || item?.product?.image;
+        if (direct) return direct.startsWith('http') ? direct : `${BASE_URL}/storage/${direct}`;
+
+        const primary = item?.product?.product_images?.find(i => i.is_primary) || item?.product?.product_images?.[0];
+        const path = primary?.image_url || primary?.image_path;
+        if (!path) return '/placeholder.png';
+        return path.startsWith('http') ? path : `${BASE_URL}/storage/${path}`;
+    };
+
+>>>>>>> a45f52b (payment-integrated)
     const { data: order, isLoading, isError } = useQuery({
         queryKey: ['order', id],
         queryFn: async () => {
@@ -27,7 +47,11 @@ const OrderDetailPage = () => {
             const url = window.URL.createObjectURL(new Blob([response.data], { type: 'application/pdf' }));
             const link = document.createElement('a');
             link.href = url;
+<<<<<<< HEAD
             link.setAttribute('download', `ThePhoneHub-Invoice-${order?.order_number || id}.pdf`);
+=======
+            link.setAttribute('download', `PhoneHubX-Invoice-${order?.order_number || id}.pdf`);
+>>>>>>> a45f52b (payment-integrated)
             document.body.appendChild(link);
             link.click();
             link.remove();
@@ -151,7 +175,11 @@ const OrderDetailPage = () => {
                                 {order.order_items?.map(item => (
                                     <div key={item.id} className="flex items-center gap-6 p-4 bg-gray-50 rounded-2xl group">
                                         <div className="w-20 h-20 bg-white rounded-xl p-2 border border-gray-100 flex-shrink-0">
+<<<<<<< HEAD
                                             <img src={item.product?.image_url || '/placeholder.png'} alt={item.product_name} className="w-full h-full object-contain" />
+=======
+                                            <img src={getImageUrl(item)} alt={item.product_name} className="w-full h-full object-contain" />
+>>>>>>> a45f52b (payment-integrated)
                                         </div>
                                         <div className="flex-grow">
                                             <h4 className="font-black text-gray-900 uppercase tracking-tight">{item.product_name}</h4>

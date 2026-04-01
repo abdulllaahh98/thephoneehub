@@ -120,7 +120,11 @@ const AdminDashboard = () => {
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
                     <h1 className="text-3xl font-black text-gray-900 uppercase tracking-tighter">Dashboard Overview</h1>
+<<<<<<< HEAD
                     <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Real-time stats for ThePhoneHub.in</p>
+=======
+                    <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest mt-1">Real-time stats for PhoneHubX</p>
+>>>>>>> a45f52b (payment-integrated)
                 </div>
                 <button
                     onClick={() => refetch()}

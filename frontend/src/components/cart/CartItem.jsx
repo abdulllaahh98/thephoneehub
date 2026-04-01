@@ -2,6 +2,12 @@ import React from 'react';
 import { Minus, Plus, X, AlertTriangle, Smartphone } from 'lucide-react';
 import useCartStore from '../../store/useCartStore';
 
+<<<<<<< HEAD
+=======
+const BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1')
+    .replace('/api/v1', '');
+
+>>>>>>> a45f52b (payment-integrated)
 // Brand-based gradient colors for placeholder
 const brandColors = {
     apple:   'from-gray-700 to-gray-900',
@@ -31,7 +37,16 @@ const CartItem = ({ item }) => {
     // Store uses `qty` and `cart_item_id` as field names
     const quantity = item.qty ?? item.quantity ?? 1;
     const cartItemId = item.cart_item_id ?? item.id;
+<<<<<<< HEAD
     const imageUrl = item.image || item.image_url || 'https://via.placeholder.com/150';
+=======
+    
+    // Convert relative path to full URL
+    let imageUrl = item.image || item.image_url;
+    if (imageUrl && !imageUrl.startsWith('http')) {
+        imageUrl = `${BASE_URL}/storage/${imageUrl}`;
+    }
+>>>>>>> a45f52b (payment-integrated)
 
     const handleIncrement = () => {
         if (quantity < 2) {

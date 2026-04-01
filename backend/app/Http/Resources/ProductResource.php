@@ -27,6 +27,10 @@ class ProductResource extends JsonResource
             return [
                     'id' => $img->id,
                     'image_path' => $img->image_path,
+<<<<<<< HEAD
+=======
+                    'image_url' => $img->image_path ? url('/storage/' . $img->image_path) : null,
+>>>>>>> a45f52b (payment-integrated)
                     'is_primary' => $img->is_primary
                 ];
         }),

@@ -21,7 +21,11 @@ const CartPage = () => {
   return (
     <div className="bg-gray-50 min-h-screen">
       <Helmet>
+<<<<<<< HEAD
         <title>Shopping Cart | ThePhoneHub.in</title>
+=======
+        <title>Shopping Cart | PhoneHubX</title>
+>>>>>>> a45f52b (payment-integrated)
         <meta name="description" content="View and manage the items in your shopping cart before proceeding to checkout." />
       </Helmet>
 

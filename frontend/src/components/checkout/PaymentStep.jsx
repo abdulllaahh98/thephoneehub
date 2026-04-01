@@ -9,12 +9,26 @@ const PaymentStep = ({ onNext, onBack, orderData }) => {
     const [paymentMethod, setPaymentMethod] = useState('cod');
     const { clearCart, appliedCoupon, clearCoupon } = useCartStore();
 
+<<<<<<< HEAD
     // Load Razorpay Script
     useEffect(() => {
         const script = document.createElement('script');
         script.src = 'https://checkout.razorpay.com/v1/checkout.js';
         script.async = true;
         document.body.appendChild(script);
+=======
+    // Load Cashfree Script
+    useEffect(() => {
+        const script = document.createElement('script');
+        script.src = 'https://sdk.cashfree.com/js/v3/cashfree.js';
+        script.async = true;
+        document.body.appendChild(script);
+        return () => {
+            if (document.body.contains(script)) {
+                document.body.removeChild(script);
+            }
+        };
+>>>>>>> a45f52b (payment-integrated)
     }, []);
 
     const handlePayment = async () => {
@@ -34,6 +48,7 @@ const PaymentStep = ({ onNext, onBack, orderData }) => {
                 clearCoupon();
                 onNext({ method: 'cod', order_id: order.order_id, order_number: order.order_number });
             } else {
+<<<<<<< HEAD
                 // 2. Initialize Razorpay Checkout
                 const options = {
                     key: import.meta.env.VITE_RAZORPAY_KEY || 'rzp_test_mockkey', // Use env variable
@@ -70,11 +85,61 @@ const PaymentStep = ({ onNext, onBack, orderData }) => {
                     setError(response.error.description);
                 });
                 rzp.open();
+=======
+                // 2. Initialize Cashfree Checkout
+                if (!window.Cashfree) {
+                    throw new Error('Cashfree SDK not loaded. Please refresh and try again.');
+                }
+                if (!order.payment_session_id) {
+                    throw new Error('Payment session not created. Please try again.');
+                }
+
+                const rawMode = (import.meta.env.VITE_CASHFREE_ENV || 'test').toLowerCase();
+                const mode = rawMode === 'production' || rawMode === 'prod' ? 'production' : 'sandbox';
+                const cashfree = window.Cashfree({
+                    mode,
+                });
+
+                const checkoutOptions = {
+                    paymentSessionId: order.payment_session_id,
+                    redirectTarget: "_modal",
+                    mode,
+                };
+
+                cashfree.checkout(checkoutOptions).then(async (result) => {
+                    if (result.error) {
+                        setError(result.error.message || 'Payment failed to initialize.');
+                        setIsLoading(false);
+                    } else if (result.redirect) {
+                        // This handles the redirect if modal is not used or if user closes it
+                        console.log("Redirected to Cashfree");
+                    } else {
+                        // Modal closed or payment completed (need to verify on backend)
+                        try {
+                            setIsLoading(true);
+                            await api.post('auth/checkout/verify', {
+                                order_number: order.order_number,
+                            });
+                            clearCart();
+                            clearCoupon();
+                            onNext({ method: 'cashfree', order_id: order.order_id, order_number: order.order_number });
+                        } catch (err) {
+                            setError('Payment verification failed. Please check your order history.');
+                        } finally {
+                            setIsLoading(false);
+                        }
+                    }
+                });
+>>>>>>> a45f52b (payment-integrated)
             }
         } catch (e) {
             setError(e.response?.data?.message || 'Order creation failed. Please try again.');
         } finally {
+<<<<<<< HEAD
             setIsLoading(false);
+=======
+            if (paymentMethod === 'cod') setIsLoading(false);
+>>>>>>> a45f52b (payment-integrated)
         }
     };
 
@@ -90,6 +155,7 @@ const PaymentStep = ({ onNext, onBack, orderData }) => {
             <div className="space-y-4 mb-10">
                 {/* Online Payment */}
                 <button
+<<<<<<< HEAD
                     onClick={() => setPaymentMethod('online')}
                     className={`w-full flex items-center p-6 rounded-2xl border-2 transition-all ${paymentMethod === 'online' ? 'border-orange bg-orange/5' : 'border-gray-100 hover:border-gray-200 bg-white'}`}
                 >
@@ -102,6 +168,20 @@ const PaymentStep = ({ onNext, onBack, orderData }) => {
                     </div>
                     <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${paymentMethod === 'online' ? 'border-orange' : 'border-gray-200'}`}>
                         {paymentMethod === 'online' && <div className="w-3 h-3 bg-orange rounded-full"></div>}
+=======
+                    onClick={() => setPaymentMethod('cashfree')}
+                    className={`w-full flex items-center p-6 rounded-2xl border-2 transition-all ${paymentMethod === 'cashfree' ? 'border-orange bg-orange/5' : 'border-gray-100 hover:border-gray-200 bg-white'}`}
+                >
+                    <div className={`p-4 rounded-xl ${paymentMethod === 'cashfree' ? 'bg-orange text-white' : 'bg-gray-100 text-gray-400'}`}>
+                        <CreditCard className="h-6 w-6" />
+                    </div>
+                    <div className="ml-6 flex-grow text-left">
+                        <h3 className="font-black text-gray-900 uppercase tracking-tight">Cashfree Payment</h3>
+                        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mt-1">UPI, Cards, Netbanking</p>
+                    </div>
+                    <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${paymentMethod === 'cashfree' ? 'border-orange' : 'border-gray-200'}`}>
+                        {paymentMethod === 'cashfree' && <div className="w-3 h-3 bg-orange rounded-full"></div>}
+>>>>>>> a45f52b (payment-integrated)
                     </div>
                 </button>
 
@@ -155,7 +235,11 @@ const PaymentStep = ({ onNext, onBack, orderData }) => {
                     disabled={isLoading}
                     className="bg-navy text-white py-4 rounded-2xl font-black text-xs lg:text-lg uppercase tracking-widest shadow-lg shadow-navy/20 hover:shadow-xl active:scale-[0.98] transition-all flex items-center justify-center"
                 >
+<<<<<<< HEAD
                     {isLoading ? <Loader2 className="h-6 w-6 animate-spin" /> : paymentMethod === 'online' ? 'Pay Securely' : 'Confirm Order'}
+=======
+                    {isLoading ? <Loader2 className="h-6 w-6 animate-spin" /> : paymentMethod === 'cashfree' ? 'Pay with Cashfree' : 'Confirm Order'}
+>>>>>>> a45f52b (payment-integrated)
                 </button>
             </div>
         </div>

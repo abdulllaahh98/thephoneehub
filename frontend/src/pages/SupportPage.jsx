@@ -89,8 +89,13 @@ const SupportPage = () => {
     return (
         <div className="bg-white min-h-screen font-sans">
             <Helmet>
+<<<<<<< HEAD
                 <title>Support & Legal Information | ThePhoneHub.in</title>
                 <meta name="description" content="Find FAQs, Privacy Policy, Terms of Service, and Shipping details for ThePhoneHub.in" />
+=======
+                <title>Support & Legal Information | PhoneHubX</title>
+                <meta name="description" content="Find FAQs, Privacy Policy, Terms of Service, and Shipping details for PhoneHubX" />
+>>>>>>> a45f52b (payment-integrated)
             </Helmet>
 
             {/* Hero Section */}
@@ -100,7 +105,11 @@ const SupportPage = () => {
                         Support & Legal Information
                     </h1>
                     <p className="text-lg text-gray-500 max-w-2xl mx-auto leading-relaxed font-medium">
+<<<<<<< HEAD
                         Everything you need to know about our services, policies, and how we protect your interests at ThePhoneHub.in.
+=======
+                        Everything you need to know about our services, policies, and how we protect your interests at PhoneHubX.
+>>>>>>> a45f52b (payment-integrated)
                     </p>
                 </div>
             </div>
@@ -109,9 +118,18 @@ const SupportPage = () => {
             <nav className="sticky top-0 z-40 bg-white/80 backdrop-blur-lg border-b border-gray-100 shadow-sm overflow-x-auto">
                 <div className="max-w-5xl mx-auto px-4 flex justify-between md:justify-center md:space-x-8 py-4 whitespace-nowrap">
                     {navItems.map(item => (
+<<<<<<< HEAD
                         <a
                             key={item.id}
                             href={`#${item.id}`}
+=======
+                        <button
+                            key={item.id}
+                            onClick={() => {
+                                const el = document.getElementById(item.id);
+                                if (el) el.scrollIntoView({ behavior: 'smooth' });
+                            }}
+>>>>>>> a45f52b (payment-integrated)
                             className={`flex items-center space-x-2 px-4 py-2 rounded-full font-bold text-sm transition-all ${activeTab === item.id
                                 ? 'bg-blue-600 text-white shadow-md shadow-blue-200'
                                 : 'text-gray-500 hover:text-blue-600 hover:bg-blue-50'
@@ -119,14 +137,21 @@ const SupportPage = () => {
                         >
                             <item.icon className="h-4 w-4" />
                             <span>{item.label}</span>
+<<<<<<< HEAD
                         </a>
+=======
+                        </button>
+>>>>>>> a45f52b (payment-integrated)
                     ))}
                 </div>
             </nav>
 
             {/* Main Content */}
             <div className="pb-20">
+<<<<<<< HEAD
 
+=======
+>>>>>>> a45f52b (payment-integrated)
                 {/* FAQ Section */}
                 <Section id="faq" title="Frequently Asked Questions" icon={HelpCircle} color="blue">
                     <div className="mt-8">
@@ -136,7 +161,11 @@ const SupportPage = () => {
                         />
                         <FAQItem
                             question="Do you provide a warranty?"
+<<<<<<< HEAD
                             answer="Yes, every smartphone purchased from ThePhoneHub.in comes with a minimum of 6 months comprehensive warranty covering manufacturing defects and hardware failures."
+=======
+                            answer="Yes, every smartphone purchased from PhoneHubX comes with a minimum of 6 months comprehensive warranty covering manufacturing defects and hardware failures."
+>>>>>>> a45f52b (payment-integrated)
                         />
                         <FAQItem
                             question="Can I pay via Cash on Delivery?"
@@ -177,11 +206,19 @@ const SupportPage = () => {
 
                 {/* Terms of Service Section */}
                 <Section id="terms" title="Terms of Service" icon={FileText} color="blue">
+<<<<<<< HEAD
                     <div className="space-y-6 text-gray-700 list-decimal-container">
                         <ol className="list-decimal pl-6 space-y-6">
                             <li>
                                 <h4 className="font-bold text-gray-900 inline"> Acceptance of Terms: </h4>
                                 By accessing ThePhoneHub.in, you agree to abide by these terms and conditions.
+=======
+                    <div className="space-y-6 text-gray-700">
+                        <ol className="list-decimal pl-6 space-y-6">
+                            <li>
+                                <h4 className="font-bold text-gray-900 inline"> Acceptance of Terms: </h4>
+                                By accessing PhoneHubX, you agree to abide by these terms and conditions.
+>>>>>>> a45f52b (payment-integrated)
                             </li>
                             <li>
                                 <h4 className="font-bold text-gray-900 inline"> User Accounts: </h4>
@@ -193,7 +230,11 @@ const SupportPage = () => {
                             </li>
                             <li>
                                 <h4 className="font-bold text-gray-900 inline"> Limitation of Liability: </h4>
+<<<<<<< HEAD
                                 ThePhoneHub is not liable for indirect damages arising from the use of our products beyond the replacement cost.
+=======
+                                PhoneHubX is not liable for indirect damages arising from the use of our products beyond the replacement cost.
+>>>>>>> a45f52b (payment-integrated)
                             </li>
                         </ol>
                     </div>
@@ -249,7 +290,10 @@ const SupportPage = () => {
                         </div>
                     </div>
                 </Section>
+<<<<<<< HEAD
 
+=======
+>>>>>>> a45f52b (payment-integrated)
             </div>
         </div>
     );

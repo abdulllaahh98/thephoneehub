@@ -25,7 +25,11 @@ const Navbar = () => {
                     {/* Logo */}
                     <div className="flex-shrink-0 flex items-center">
                         <Link to="/" className="text-xl md:text-2xl font-bold text-white tracking-tight">
+<<<<<<< HEAD
                             ThePhone<span className="text-[#E84118]">Hub</span>.in
+=======
+                            Phone<span className="text-[#E84118]">HubX</span>
+>>>>>>> a45f52b (payment-integrated)
                         </Link>
                     </div>
 

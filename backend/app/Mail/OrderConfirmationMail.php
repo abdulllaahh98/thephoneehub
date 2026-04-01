@@ -31,7 +31,11 @@ class OrderConfirmationMail extends Mailable
      */
     public function build()
     {
+<<<<<<< HEAD
         return $this->subject("Order Confirmed! {$this->order->order_number} — ThePhoneHub.in")
+=======
+        return $this->subject("Order Confirmed! {$this->order->order_number} — PhoneHubX")
+>>>>>>> a45f52b (payment-integrated)
             ->markdown('emails.orders.confirmed');
     }
 }

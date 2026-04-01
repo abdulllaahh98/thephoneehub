@@ -31,7 +31,11 @@ class OrderCancelledMail extends Mailable
      */
     public function build()
     {
+<<<<<<< HEAD
         return $this->subject("Order {$this->order->order_number} Cancelled — ThePhoneHub.in")
+=======
+        return $this->subject("Order {$this->order->order_number} Cancelled — PhoneHubX")
+>>>>>>> a45f52b (payment-integrated)
             ->markdown('emails.orders.cancelled');
     }
 }

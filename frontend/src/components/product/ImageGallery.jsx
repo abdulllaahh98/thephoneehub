@@ -10,7 +10,11 @@ const ImageGallery = ({ images = [] }) => {
 
     const getUrl = (img) => {
         if (!img) return null;
+<<<<<<< HEAD
         const path = img.image_path || img;
+=======
+        const path = img.image_url || img.image_path || img;
+>>>>>>> a45f52b (payment-integrated)
         if (path.startsWith('http')) return path;
         return `${BASE_URL}/storage/${path}`;
     };

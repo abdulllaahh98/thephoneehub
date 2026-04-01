@@ -59,7 +59,11 @@ const HomePage = () => {
   return (
     <div className="bg-gray-50 overflow-hidden">
       <Helmet>
+<<<<<<< HEAD
         <title>ThePhoneHub.in | Premium Certified Refurbished Smartphones</title>
+=======
+        <title>PhoneHubX | Premium Certified Refurbished Smartphones</title>
+>>>>>>> a45f52b (payment-integrated)
         <meta name="description" content="India's most trusted shop for certified refurbished smartphones. 6 months warranty, 40+ quality checks, and free shipping." />
       </Helmet>
 

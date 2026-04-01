@@ -4,6 +4,12 @@ import { ShoppingCart } from 'lucide-react';
 import useCartStore from '../../store/useCartStore';
 import toast from 'react-hot-toast';
 
+<<<<<<< HEAD
+=======
+const BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1')
+    .replace('/api/v1', '');
+
+>>>>>>> a45f52b (payment-integrated)
 const ProductCard = ({ product }) => {
     if (!product) return null;
     const addItem = useCartStore((state) => state.addItem);
@@ -13,8 +19,15 @@ const ProductCard = ({ product }) => {
     const isOutOfStock = stock_qty === 0;
     const discount = mrp > 0 ? Math.round(((mrp - price) / mrp) * 100) : 0;
 
+<<<<<<< HEAD
     const imageUrl = image
         ? (image.startsWith('http') ? image : `http://localhost:8000/storage/${image}`)
+=======
+    const imageUrl = (product.image_url || image)
+        ? ((product.image_url || image).startsWith('http')
+            ? (product.image_url || image)
+            : `${BASE_URL}/storage/${product.image_url || image}`)
+>>>>>>> a45f52b (payment-integrated)
         : null;
 
     const getConditionColor = (label) => {

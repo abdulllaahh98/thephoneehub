@@ -20,11 +20,27 @@ class Product extends Model
         return $this->belongsTo(ConditionGrade::class);
     }
 
+<<<<<<< HEAD
+=======
+    public function admin()
+    {
+        return $this->belongsTo(User::class, 'admin_id');
+    }
+
+>>>>>>> a45f52b (payment-integrated)
     public function productImages()
     {
         return $this->hasMany(ProductImage::class);
     }
 
+<<<<<<< HEAD
+=======
+    public function primaryImage()
+    {
+        return $this->hasOne(ProductImage::class)->where('is_primary', true);
+    }
+
+>>>>>>> a45f52b (payment-integrated)
     public function productSpecs()
     {
         return $this->hasMany(ProductSpec::class);
@@ -44,9 +60,12 @@ class Product extends Model
     {
         return $this->hasMany(ProductVariant::class);
     }
+<<<<<<< HEAD
 
     public function admin()
     {
         return $this->belongsTo(User::class, 'admin_id');
     }
+=======
+>>>>>>> a45f52b (payment-integrated)
 }

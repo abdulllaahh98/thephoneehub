@@ -32,7 +32,11 @@ const useInventoryStore = create(
             },
         }),
         {
+<<<<<<< HEAD
             name: 'thephonehub-inventory', // localStorage key
+=======
+            name: 'phonehubx-inventory', // localStorage key
+>>>>>>> a45f52b (payment-integrated)
         }
     )
 );

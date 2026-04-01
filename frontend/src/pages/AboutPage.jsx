@@ -14,7 +14,11 @@ const AboutPage = () => {
     return (
         <div className="bg-white min-h-screen">
             <Helmet>
+<<<<<<< HEAD
                 <title>About Us | ThePhoneHub.in</title>
+=======
+                <title>About Us | PhoneHubX</title>
+>>>>>>> a45f52b (payment-integrated)
             </Helmet>
 
             {/* Hero Section */}
@@ -54,7 +58,11 @@ const AboutPage = () => {
                     <div className="flex-1 space-y-8">
                         <h2 className="text-4xl lg:text-5xl font-black tracking-tighter uppercase leading-tight">
                             Why Choose <br />
+<<<<<<< HEAD
                             <span className="text-orange text-6xl">ThePhoneHub?</span>
+=======
+                            <span className="text-orange text-6xl">PhoneHubX?</span>
+>>>>>>> a45f52b (payment-integrated)
                         </h2>
                         <div className="space-y-6">
                             <div className="flex items-start space-x-4">

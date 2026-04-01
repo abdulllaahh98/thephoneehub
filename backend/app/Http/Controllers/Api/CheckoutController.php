@@ -56,7 +56,11 @@ class CheckoutController extends Controller
                 $coupon = Coupon::where('code', $request->coupon_code)->first();
                 if ($coupon) {
                     // Quick check if valid
+<<<<<<< HEAD
                     if ($subtotal >= $coupon->min_order_value && (!$coupon->expires_at || !new \DateTime($coupon->expires_at) < new \DateTime())) {
+=======
+                    if ($subtotal >= $coupon->min_order_value && (!$coupon->expires_at || new \DateTime($coupon->expires_at) >= new \DateTime())) {
+>>>>>>> a45f52b (payment-integrated)
                         if ($coupon->type === 'percent') {
                             $discount = ($coupon->value / 100) * $subtotal;
                             if ($coupon->max_discount && $discount > $coupon->max_discount)
@@ -76,7 +80,11 @@ class CheckoutController extends Controller
             $grandTotal = $afterDiscount + $gst + $deliveryFee;
 
             // COD Check
+<<<<<<< HEAD
             $codEligible = CodEligiblePincode::where('pin', $address->pincode)->exists();
+=======
+            $codEligible = CodEligiblePincode::where('pin', $address->pin)->exists();
+>>>>>>> a45f52b (payment-integrated)
 
             return $this->response(true, 'Checkout summary generated', [
                 'subtotal' => round($subtotal, 2),

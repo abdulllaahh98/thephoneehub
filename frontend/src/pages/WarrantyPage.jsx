@@ -76,7 +76,11 @@ const WarrantyPage = () => {
     return (
         <div className="bg-gray-50 min-h-screen py-12 lg:py-20">
             <Helmet>
+<<<<<<< HEAD
                 <title>Warranty Details | ThePhoneHub.in</title>
+=======
+                <title>Warranty Details | PhoneHubX</title>
+>>>>>>> a45f52b (payment-integrated)
             </Helmet>
 
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -124,9 +128,14 @@ const WarrantyPage = () => {
                             </div>
                             <div className="flex justify-between items-center text-xs font-bold uppercase">
                                 <span className="text-gray-400">Status</span>
+<<<<<<< HEAD
                                 <span className={`font-black px-2 py-1 rounded-lg text-[10px] ${
                                     warranty.status === 'active' ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-600'
                                 }`}>{warranty.status?.toUpperCase()}</span>
+=======
+                                <span className={`font-black px-2 py-1 rounded-lg text-[10px] ${warranty.status === 'active' ? 'bg-green-50 text-green-600' : 'bg-red-50 text-red-600'
+                                    }`}>{warranty.status?.toUpperCase()}</span>
+>>>>>>> a45f52b (payment-integrated)
                             </div>
                         </div>
                     </div>

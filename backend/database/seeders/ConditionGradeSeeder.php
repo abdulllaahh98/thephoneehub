@@ -16,13 +16,21 @@ class ConditionGradeSeeder extends Seeder
     {
         ConditionGrade::create([
             'code' => 'A+',
+<<<<<<< HEAD
             'label' => 'Mint (Like New)',
+=======
+            'label' => 'Like New',
+>>>>>>> a45f52b (payment-integrated)
             'description' => 'No visible scratches or dents. Battery health above 90%.',
         ]);
 
         ConditionGrade::create([
             'code' => 'A',
+<<<<<<< HEAD
             'label' => 'Excellent',
+=======
+            'label' => 'Superb',
+>>>>>>> a45f52b (payment-integrated)
             'description' => 'Minor micro-scratches, not visible from 12 inches away.',
         ]);
 

@@ -46,6 +46,10 @@ Route::group(['prefix' => 'v1'], function () {
                     // Coupon & Checkout
                     Route::post('/coupons/validate', [App\Http\Controllers\Api\CouponController::class , 'validateCoupon']);
                     Route::post('/checkout/summary', [App\Http\Controllers\Api\CheckoutController::class , 'summary']);
+<<<<<<< HEAD
+=======
+                    Route::post('/checkout/verify', [App\Http\Controllers\Api\PaymentController::class , 'verify']);
+>>>>>>> a45f52b (payment-integrated)
 
                     // Order Routes
                     Route::get('/orders', [App\Http\Controllers\Api\OrderController::class , 'index']);
@@ -110,7 +114,12 @@ Route::group(['prefix' => 'v1'], function () {
             Route::get('/reports/sales/export', [App\Http\Controllers\Api\Admin\AdminReportController::class , 'exportCsv']);
         }
         );
+<<<<<<< HEAD
     });
+=======
+        Route::post('/webhooks/cashfree', [App\Http\Controllers\Api\CashfreeWebhookController::class, 'handle']);
+});
+>>>>>>> a45f52b (payment-integrated)
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

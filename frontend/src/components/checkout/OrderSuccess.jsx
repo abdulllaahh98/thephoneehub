@@ -73,10 +73,17 @@ const OrderSuccess = ({ orderData }) => {
                     <div className="bg-gray-50 rounded-2xl p-6 border border-gray-100 space-y-4">
                         <div className="flex justify-between items-center text-xs font-black uppercase tracking-widest text-gray-500">
                             <span>Payment Summary</span>
+<<<<<<< HEAD
                             <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded leading-none">{method === 'online' ? 'PAID' : 'COD'}</span>
                         </div>
                         <div className="flex justify-between items-center font-black">
                             <span className="text-gray-400">Amount to {method === 'online' ? 'Paid' : 'Pay'}</span>
+=======
+                            <span className="bg-green-100 text-green-700 px-2 py-0.5 rounded leading-none">{method === 'cashfree' ? 'PAID' : 'COD'}</span>
+                        </div>
+                        <div className="flex justify-between items-center font-black">
+                            <span className="text-gray-400">Amount to {method === 'cashfree' ? 'Paid' : 'Pay'}</span>
+>>>>>>> a45f52b (payment-integrated)
                             <span className="text-2xl text-orange">₹{total.toLocaleString('en-IN')}</span>
                         </div>
                         <div className="pt-2">

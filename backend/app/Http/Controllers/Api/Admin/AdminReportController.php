@@ -32,6 +32,7 @@ class AdminReportController extends Controller
             $startOfMonth = Carbon::now()->startOfMonth();
 
             $stats = [
+<<<<<<< HEAD
                 'today_orders' => Order::whereDate('created_at', $today)->count(),
                 'today_revenue' => Order::whereDate('created_at', $today)
                     ->whereIn('status', ['delivered', 'processing', 'shipped'])
@@ -43,6 +44,27 @@ class AdminReportController extends Controller
                 'low_stock_products' => Product::where('stock_qty', '<=', 5)->count(),
                 'pending_warranty_claims' => WarrantyClaim::whereIn('status', ['received', 'under_review'])->count(),
                 'pending_orders' => Order::where('status', 'processing')->count(),
+=======
+                'total_revenue' => Order::whereNotIn('status', ['cancelled'])->sum('grand_total'),
+                'today_orders' => Order::whereDate('created_at', $today)->count(),
+                'orders_yesterday' => Order::whereDate('created_at', Carbon::yesterday())->count(),
+                'low_stock_count' => Product::where('stock_qty', '<=', 5)->count(),
+                'pending_warranty_claims' => WarrantyClaim::whereIn('status', ['received', 'under_review'])->count(),
+                'recent_orders' => Order::with('user')
+                    ->orderBy('created_at', 'desc')
+                    ->limit(5)
+                    ->get()
+                    ->map(fn($o) => [
+                        'id' => $o->order_number,
+                        'customer' => $o->user->name,
+                        'amount' => number_format($o->grand_total, 2),
+                        'status' => $o->status
+                    ]),
+                'low_stock_items' => Product::where('stock_qty', '<=', 5)
+                    ->select('id', 'brand', 'model', 'stock_qty')
+                    ->limit(5)
+                    ->get(),
+>>>>>>> a45f52b (payment-integrated)
                 'top_selling_products' => DB::table('order_items')
                     ->join('products', 'order_items.product_id', '=', 'products.id')
                     ->select('products.id', 'products.brand', 'products.model', DB::raw('SUM(order_items.quantity) as total_qty'))

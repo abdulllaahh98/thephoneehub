@@ -375,6 +375,10 @@ const AdminProducts = () => {
                                 <th className="px-8 py-6 text-[10px] font-black text-gray-400 uppercase tracking-widest">Storage & Condition</th>
                                 <th className="px-8 py-6 text-[10px] font-black text-gray-400 uppercase tracking-widest text-right">Price</th>
                                 <th className="px-8 py-6 text-[10px] font-black text-gray-400 uppercase tracking-widest text-center">Stock</th>
+<<<<<<< HEAD
+=======
+                                <th className="px-8 py-6 text-[10px] font-black text-gray-400 uppercase tracking-widest text-center">Added By</th>
+>>>>>>> a45f52b (payment-integrated)
                                 <th className="px-8 py-6 text-[10px] font-black text-gray-400 uppercase tracking-widest text-center">Actions</th>
                             </tr>
                         </thead>
@@ -384,8 +388,25 @@ const AdminProducts = () => {
                                     <tr className="hover:bg-gray-50/30 transition-colors group">
                                         <td className="px-8 py-6">
                                             <div className="flex items-center space-x-4">
+<<<<<<< HEAD
                                                 <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center text-gray-400 group-hover:bg-orange/10 group-hover:text-orange transition-all">
                                                     <Smartphone className="h-6 w-6" />
+=======
+                                                <div className="w-12 h-12 bg-gray-100 rounded-xl flex items-center justify-center text-gray-400 group-hover:bg-orange/10 group-hover:text-orange transition-all overflow-hidden border border-gray-100">
+                                                    {p.primary_image ? (
+                                                        <img
+                                                            src={p.primary_image.image_url || `${import.meta.env.VITE_API_URL?.replace('/api/v1', '') || 'http://127.0.0.1:8000'}/storage/${p.primary_image.image_path}`}
+                                                            alt={p.model}
+                                                            className="w-full h-full object-cover"
+                                                            onError={(e) => {
+                                                                e.target.onerror = null;
+                                                                e.target.src = 'https://placehold.co/100x100?text=No+Image';
+                                                            }}
+                                                        />
+                                                    ) : (
+                                                        <Smartphone className="h-6 w-6" />
+                                                    )}
+>>>>>>> a45f52b (payment-integrated)
                                                 </div>
                                                 <div>
                                                     <p className="text-sm font-black text-gray-900 uppercase tracking-tight">{p.model}</p>
@@ -407,15 +428,30 @@ const AdminProducts = () => {
                                                 {p.stock_qty}
                                             </div>
                                         </td>
+<<<<<<< HEAD
+=======
+                                        <td className="px-8 py-6 text-center">
+                                            <span className="text-[10px] font-black uppercase text-navy/60 bg-navy/5 px-3 py-1.5 rounded-lg border border-navy/10">
+                                                {p.admin?.name || 'System'}
+                                            </span>
+                                        </td>
+>>>>>>> a45f52b (payment-integrated)
                                         <td className="px-8 py-6">
                                             <div className="flex items-center justify-center space-x-2">
                                                 <button
                                                     onClick={() => editingProduct === p.id ? setEditingProduct(null) : handleEdit(p)}
+<<<<<<< HEAD
                                                     className={`p-2.5 rounded-xl transition-all shadow-sm ${
                                                         editingProduct === p.id
                                                             ? 'bg-orange text-white'
                                                             : 'bg-gray-50 text-gray-400 hover:text-navy hover:bg-gray-100'
                                                     }`}
+=======
+                                                    className={`p-2.5 rounded-xl transition-all shadow-sm ${editingProduct === p.id
+                                                            ? 'bg-orange text-white'
+                                                            : 'bg-gray-50 text-gray-400 hover:text-navy hover:bg-gray-100'
+                                                        }`}
+>>>>>>> a45f52b (payment-integrated)
                                                     title="Edit product"
                                                 >
                                                     <Edit2 className="h-4 w-4" />

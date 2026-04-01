@@ -26,6 +26,11 @@ return new class extends Migration
             $table->string('payment_method')->nullable();
             $table->string('razorpay_order_id')->nullable();
             $table->string('razorpay_payment_id')->nullable();
+<<<<<<< HEAD
+=======
+            $table->string('cashfree_order_id')->nullable();
+            $table->string('cashfree_payment_session_id')->nullable();
+>>>>>>> a45f52b (payment-integrated)
             $table->string('awb_number')->nullable();
             $table->string('courier')->nullable();
             $table->timestamps();

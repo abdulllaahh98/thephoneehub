@@ -58,6 +58,12 @@ return [
 
     'asset_url' => env('ASSET_URL'),
 
+<<<<<<< HEAD
+=======
+    // Frontend base URL for building redirect links (e.g., payment return URLs)
+    'frontend_url' => env('FRONTEND_URL', 'http://localhost:5173'),
+
+>>>>>>> a45f52b (payment-integrated)
     /*
     |--------------------------------------------------------------------------
     | Application Timezone

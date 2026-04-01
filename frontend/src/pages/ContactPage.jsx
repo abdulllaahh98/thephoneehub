@@ -28,7 +28,11 @@ const ContactPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> a45f52b (payment-integrated)
     // Simulate API call
     setTimeout(() => {
       toast.success('Message sent successfully! We will get back to you soon.');
@@ -40,8 +44,13 @@ const ContactPage = () => {
   return (
     <div className="bg-[#fcfcfc] min-h-screen pt-32 pb-20">
       <Helmet>
+<<<<<<< HEAD
         <title>Contact Us | ThePhoneHub.in</title>
         <meta name="description" content="Reach out to ThePhoneHub.in for any queries regarding refurbished smartphones." />
+=======
+        <title>Contact Us | PhoneHubX</title>
+        <meta name="description" content="Reach out to PhoneHubX for any queries regarding refurbished smartphones." />
+>>>>>>> a45f52b (payment-integrated)
       </Helmet>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -57,6 +66,7 @@ const ContactPage = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Contact Details */}
           <div className="lg:col-span-1 space-y-6">
+<<<<<<< HEAD
             <ContactInfo 
               icon={Phone} 
               title="Call Us" 
@@ -79,6 +89,30 @@ const ContactPage = () => {
               icon={MessageSquare} 
               title="WhatsApp" 
               content="+91 98765 43210" 
+=======
+            <ContactInfo
+              icon={Phone}
+              title="Call Us"
+              content="+91 12345 67890"
+              subContent="Mon-Sat, 10am - 7pm"
+            />
+            <ContactInfo
+              icon={Mail}
+              title="Email Us"
+              content="support@phonehubx.com"
+              subContent="We usually reply within 24 hours"
+            />
+            <ContactInfo
+              icon={MapPin}
+              title="Our Office"
+              content="Mumbai"
+              subContent="Delhi 110019, India"
+            />
+            <ContactInfo
+              icon={MessageSquare}
+              title="WhatsApp"
+              content="+91 98765 43210"
+>>>>>>> a45f52b (payment-integrated)
               subContent="Quick support on chat"
             />
           </div>
@@ -94,7 +128,11 @@ const ContactPage = () => {
                       type="text"
                       required
                       value={formData.name}
+<<<<<<< HEAD
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
+=======
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+>>>>>>> a45f52b (payment-integrated)
                       className="w-full px-5 py-4 bg-gray-50 border-0 rounded-2xl focus:ring-2 focus:ring-blue-500 transition-all font-medium"
                       placeholder="John Doe"
                     />
@@ -105,7 +143,11 @@ const ContactPage = () => {
                       type="email"
                       required
                       value={formData.email}
+<<<<<<< HEAD
                       onChange={(e) => setFormData({...formData, email: e.target.value})}
+=======
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+>>>>>>> a45f52b (payment-integrated)
                       className="w-full px-5 py-4 bg-gray-50 border-0 rounded-2xl focus:ring-2 focus:ring-blue-500 transition-all font-medium"
                       placeholder="john@example.com"
                     />
@@ -117,7 +159,11 @@ const ContactPage = () => {
                     type="text"
                     required
                     value={formData.subject}
+<<<<<<< HEAD
                     onChange={(e) => setFormData({...formData, subject: e.target.value})}
+=======
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+>>>>>>> a45f52b (payment-integrated)
                     className="w-full px-5 py-4 bg-gray-50 border-0 rounded-2xl focus:ring-2 focus:ring-blue-500 transition-all font-medium"
                     placeholder="Inquiry about Warranty"
                   />
@@ -128,7 +174,11 @@ const ContactPage = () => {
                     required
                     rows="5"
                     value={formData.message}
+<<<<<<< HEAD
                     onChange={(e) => setFormData({...formData, message: e.target.value})}
+=======
+                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+>>>>>>> a45f52b (payment-integrated)
                     className="w-full px-5 py-4 bg-gray-50 border-0 rounded-2xl focus:ring-2 focus:ring-blue-500 transition-all font-medium"
                     placeholder="How can we help you?"
                   ></textarea>

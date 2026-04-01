@@ -17,6 +17,12 @@ class ProductListResource extends JsonResource
             'mrp' => $this->mrp,
             'stock_qty' => $this->stock_qty,
             'image' => $this->productImages->where('is_primary', true)->first()->image_path ?? $this->productImages->first()->image_path ?? null,
+<<<<<<< HEAD
+=======
+            'image_url' => ($this->productImages->where('is_primary', true)->first()->image_path ?? $this->productImages->first()->image_path ?? null)
+                ? url('/storage/' . ($this->productImages->where('is_primary', true)->first()->image_path ?? $this->productImages->first()->image_path))
+                : null,
+>>>>>>> a45f52b (payment-integrated)
             'condition' => $this->conditionGrade->label ?? null,
             'storage' => $this->storage,
             'ram' => $this->ram,

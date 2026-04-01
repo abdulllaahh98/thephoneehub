@@ -73,8 +73,13 @@ const CatalogPage = () => {
   return (
     <div className="bg-gray-50 min-h-screen pb-12">
       <Helmet>
+<<<<<<< HEAD
         <title>Shop Refurbished Smartphones | ThePhoneHub.in</title>
         <meta name="description" content="Browse our wide selection of certified refurbished smartphones from top brands like Apple, Samsung, and OnePlus." />
+=======
+        <title>Shop Refurbished Smartphones | PhoneHubX</title>
+        <meta name="description" content="Browse our wide selection of certified refurbished smartphones from top brands like Apple, Samsung, and OnePlus at PhoneHubX." />
+>>>>>>> a45f52b (payment-integrated)
       </Helmet>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

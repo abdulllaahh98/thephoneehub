@@ -30,7 +30,11 @@ const OrdersPage = () => {
   return (
     <div className="bg-gray-50 min-h-screen py-12 lg:py-20">
       <Helmet>
+<<<<<<< HEAD
         <title>Order History | ThePhoneHub.in</title>
+=======
+        <title>Order History | PhoneHubX</title>
+>>>>>>> a45f52b (payment-integrated)
       </Helmet>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

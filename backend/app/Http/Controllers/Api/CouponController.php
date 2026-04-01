@@ -99,7 +99,11 @@ class CouponController extends Controller
 
             // Min order value
             if ($cartSubtotal < floatval($coupon->min_order_value)) {
+<<<<<<< HEAD
                 return $this->response(false, "Minimum order value of ₹{$coupon->min_order_value} is required for this coupon.", null, null, 422);
+=======
+                return $this->response(false, "Minimum order value of Rs. {$coupon->min_order_value} is required for this coupon.", null, null, 422);
+>>>>>>> a45f52b (payment-integrated)
             }
 
             // Private coupon
@@ -118,7 +122,11 @@ class CouponController extends Controller
                 $discount = min(floatval($coupon->value), $cartSubtotal);
             }
 
+<<<<<<< HEAD
             return $this->response(true, "Coupon applied! You save ₹" . number_format($discount, 2), [
+=======
+            return $this->response(true, "Coupon applied! You save Rs. " . number_format($discount, 2), [
+>>>>>>> a45f52b (payment-integrated)
                 'coupon_id'       => $coupon->id,
                 'code'            => $coupon->code,
                 'discount_amount' => round($discount, 2),

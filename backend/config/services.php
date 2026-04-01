@@ -31,4 +31,17 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+<<<<<<< HEAD
+=======
+    'cashfree' => [
+        'app_id' => env('CASHFREE_APP_ID'),
+        'secret_key' => env('CASHFREE_SECRET_KEY'),
+        'env' => env('CASHFREE_ENV', 'test'),
+        'version' => env('CASHFREE_API_VERSION', '2023-08-01'),
+        // Optional: comma-separated list of payment methods to allow
+        // Example: "cc,dc,nb,upi,app,paylater,emi,cardlessemi"
+        'payment_methods' => env('CASHFREE_PAYMENT_METHODS'),
+    ],
+
+>>>>>>> a45f52b (payment-integrated)
 ];

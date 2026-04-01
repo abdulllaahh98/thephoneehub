@@ -14,11 +14,18 @@ const StatusStep = ({ status, activeStatus, time, note }) => {
   return (
     <div className="flex items-start space-x-4 relative">
       <div className="flex flex-col items-center">
+<<<<<<< HEAD
         <div className={`z-10 flex items-center justify-center w-6 h-6 rounded-full border-2 transition-all ${
           isCompleted ? 'bg-green-500 border-green-500 text-white' : 
           isActive ? 'bg-blue-600 border-blue-600 text-white animate-pulse' : 
           'bg-white border-gray-200 text-gray-300'
         }`}>
+=======
+        <div className={`z-10 flex items-center justify-center w-6 h-6 rounded-full border-2 transition-all ${isCompleted ? 'bg-green-500 border-green-500 text-white' :
+            isActive ? 'bg-blue-600 border-blue-600 text-white animate-pulse' :
+              'bg-white border-gray-200 text-gray-300'
+          }`}>
+>>>>>>> a45f52b (payment-integrated)
           {isCompleted ? <CheckCircle className="h-4 w-4" /> : <Clock className="h-4 w-4" />}
         </div>
         <div className={`w-0.5 h-full absolute top-6 left-3 -ml-[1px] ${isCompleted ? 'bg-green-500' : 'bg-gray-100'}`}></div>
@@ -46,9 +53,15 @@ const TrackOrderPage = () => {
     setOrderData(null);
 
     try {
+<<<<<<< HEAD
       const response = await api.post('orders/track', { 
         order_number: orderNumber, 
         email: email 
+=======
+      const response = await api.post('orders/track', {
+        order_number: orderNumber,
+        email: email
+>>>>>>> a45f52b (payment-integrated)
       });
       setOrderData(response.data.data);
       toast.success('Order found!');
@@ -63,7 +76,11 @@ const TrackOrderPage = () => {
   return (
     <div className="bg-gray-50 min-h-screen pt-32 pb-20">
       <Helmet>
+<<<<<<< HEAD
         <title>Track Your Order | ThePhoneHub.in</title>
+=======
+        <title>Track Your Order | PhoneHubX</title>
+>>>>>>> a45f52b (payment-integrated)
       </Helmet>
 
       <div className="max-w-xl mx-auto px-4">
@@ -128,7 +145,11 @@ const TrackOrderPage = () => {
                 <p className="font-black tracking-tight">{orderData.order_number}</p>
               </div>
             </div>
+<<<<<<< HEAD
             
+=======
+
+>>>>>>> a45f52b (payment-integrated)
             <div className="p-8">
               <div className="space-y-1 mb-8">
                 <p className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Ordered On</p>

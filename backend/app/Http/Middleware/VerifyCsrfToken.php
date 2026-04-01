@@ -12,6 +12,10 @@ class VerifyCsrfToken extends Middleware
      * @var array<int, string>
      */
     protected $except = [
+<<<<<<< HEAD
         //
+=======
+        'api/v1/webhooks/cashfree',
+>>>>>>> a45f52b (payment-integrated)
     ];
 }

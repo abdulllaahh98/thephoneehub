@@ -28,6 +28,7 @@ class AdminProductController extends Controller
     public function index(Request $request)
     {
         try {
+<<<<<<< HEAD
             $user = auth('api')->user();
             $products = Product::with(['category', 'conditionGrade'])
                 ->when($user->role !== 'superadmin', function ($q) use ($user) {
@@ -39,6 +40,13 @@ class AdminProductController extends Controller
                               ->orWhere('brand', 'like', "%{$request->search}%");
                     });
                 })
+=======
+            $products = Product::with(['category', 'conditionGrade', 'admin', 'primaryImage'])
+                ->when($request->search, function ($q) use ($request) {
+                $q->where('model', 'like', "%{$request->search}%")
+                    ->orWhere('brand', 'like', "%{$request->search}%");
+            })
+>>>>>>> a45f52b (payment-integrated)
                 ->orderBy('created_at', 'desc')
                 ->paginate(20);
 
@@ -74,6 +82,7 @@ class AdminProductController extends Controller
                 // Map condition string to ID
                 $conditionGradeId = $request->condition_grade_id;
                 if (!$conditionGradeId && isset($validated['condition'])) {
+<<<<<<< HEAD
                     $conditionSearch = $validated['condition'];
                     // Clean up "Mint (Like New)" to just search for portions if needed
                     $grade = \App\Models\ConditionGrade::where('label', 'like', "%{$conditionSearch}%")->first();
@@ -86,6 +95,9 @@ class AdminProductController extends Controller
                         elseif (str_contains(strtolower($conditionSearch), 'fair')) $grade = \App\Models\ConditionGrade::where('code', 'C')->first();
                     }
                     
+=======
+                    $grade = \App\Models\ConditionGrade::where('label', 'like', "%{$validated['condition']}%")->first();
+>>>>>>> a45f52b (payment-integrated)
                     $conditionGradeId = $grade ? $grade->id : 1;
                 }
                 $conditionGradeId = $conditionGradeId ?? 1;
@@ -93,12 +105,21 @@ class AdminProductController extends Controller
                 // 2. Generate SKU
                 $sku = $request->sku ?? 'TPH-' . strtoupper(substr($validated['brand'], 0, 3)) . '-' . strtoupper(substr($validated['model'], 0, 3)) . '-' . rand(1000, 9999);
 
+<<<<<<< HEAD
+=======
+                $adminId = auth('api')->id() ?? 1;
+
+>>>>>>> a45f52b (payment-integrated)
                 // 3. Create Product
                 $product = Product::create([
                     'sku' => $sku,
                     'category_id' => $categoryId,
                     'condition_grade_id' => $conditionGradeId,
+<<<<<<< HEAD
                     'admin_id' => auth('api')->id(), // Ownership
+=======
+                    'admin_id' => $adminId,
+>>>>>>> a45f52b (payment-integrated)
                     'brand' => $validated['brand'],
                     'model' => $validated['model'],
                     'storage' => $validated['storage'],
@@ -124,11 +145,19 @@ class AdminProductController extends Controller
                     ]);
                 }
 
+<<<<<<< HEAD
                 // Log creation — use fallback admin ID if unauthenticated
                 try {
                     InventoryAuditLog::create([
                         'product_id' => $product->id,
                         'admin_id' => auth('api')->id() ?? 1,
+=======
+                // Log creation
+                try {
+                    InventoryAuditLog::create([
+                        'product_id' => $product->id,
+                        'admin_id' => $adminId,
+>>>>>>> a45f52b (payment-integrated)
                         'action' => 'add',
                         'new_stock' => $product->stock_qty,
                         'notes' => 'Product initialized via Admin Panel',
@@ -144,10 +173,13 @@ class AdminProductController extends Controller
             return $this->response(true, 'Product created successfully', $product, null, 201);
         }
         catch (\Exception $e) {
+<<<<<<< HEAD
             \Log::error('Product creation failed: ' . $e->getMessage(), [
                 'request' => $request->all(),
                 'trace' => $e->getTraceAsString()
             ]);
+=======
+>>>>>>> a45f52b (payment-integrated)
             return $this->response(false, 'Failed to create product', null, $e->getMessage(), 500);
         }
     }
@@ -158,6 +190,7 @@ class AdminProductController extends Controller
     public function destroy($id)
     {
         try {
+<<<<<<< HEAD
             $user = auth('api')->user();
             $product = Product::findOrFail($id);
 
@@ -166,6 +199,10 @@ class AdminProductController extends Controller
                 return $this->response(false, 'Unauthorized. You do not own this product.', null, null, 403);
             }
 
+=======
+            $product = Product::findOrFail($id);
+
+>>>>>>> a45f52b (payment-integrated)
             DB::transaction(function () use ($product) {
                 // Delete all FK-dependent child records first
                 \Illuminate\Support\Facades\DB::table('inventory_audit_logs')->where('product_id', $product->id)->delete();
@@ -192,6 +229,7 @@ class AdminProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+<<<<<<< HEAD
         $user = auth('api')->user();
         $product = Product::findOrFail($id);
 
@@ -200,6 +238,9 @@ class AdminProductController extends Controller
             return $this->response(false, 'Unauthorized. You do not own this product.', null, null, 403);
         }
 
+=======
+        $product = Product::findOrFail($id);
+>>>>>>> a45f52b (payment-integrated)
         $validated = $request->validate([
             'brand' => 'string',
             'model' => 'string',
@@ -237,6 +278,7 @@ class AdminProductController extends Controller
      */
     public function updateStock(Request $request, $id)
     {
+<<<<<<< HEAD
         $user = auth('api')->user();
         $product = Product::findOrFail($id);
 
@@ -245,12 +287,18 @@ class AdminProductController extends Controller
             return $this->response(false, 'Unauthorized. You do not own this product.', null, null, 403);
         }
 
+=======
+>>>>>>> a45f52b (payment-integrated)
         $request->validate([
             'stock_qty' => 'required|integer|min:0',
             'notes' => 'nullable|string'
         ]);
 
         try {
+<<<<<<< HEAD
+=======
+            $product = Product::findOrFail($id);
+>>>>>>> a45f52b (payment-integrated)
             $oldStock = $product->stock_qty;
 
             DB::transaction(function () use ($product, $request, $oldStock) {
@@ -308,8 +356,12 @@ class AdminProductController extends Controller
                 }
 
                 try {
+<<<<<<< HEAD
                     $adminId = auth('api')->id();
                     DB::transaction(function () use ($row, &$inserted, $adminId) {
+=======
+                    DB::transaction(function () use ($row, &$inserted) {
+>>>>>>> a45f52b (payment-integrated)
                         $product = Product::create([
                             'brand' => $row['brand'],
                             'model' => $row['model'],
@@ -317,7 +369,10 @@ class AdminProductController extends Controller
                             'ram' => $row['ram'] ?? 'N/A',
                             'colour' => $row['colour'] ?? 'N/A',
                             'category_id' => $row['category_id'] ?? 1,
+<<<<<<< HEAD
                             'admin_id' => $adminId, // Ownership
+=======
+>>>>>>> a45f52b (payment-integrated)
                             'price' => $row['price'],
                             'mrp' => $row['mrp'] ?? $row['price'],
                             'stock_qty' => $row['stock_qty'] ?? 0,

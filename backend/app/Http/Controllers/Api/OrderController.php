@@ -40,6 +40,10 @@ class OrderController extends Controller
     {
         $request->validate([
             'address_id' => 'required|exists:addresses,id',
+<<<<<<< HEAD
+=======
+            'payment_method' => 'required|in:cod,cashfree',
+>>>>>>> a45f52b (payment-integrated)
             'coupon_code' => 'nullable|string'
         ]);
 
@@ -89,8 +93,11 @@ class OrderController extends Controller
                     $gst = round($afterDiscount * 0.18, 2);
                     $grandTotal = round($afterDiscount + $gst, 2);
 
+<<<<<<< HEAD
                     // COD is allowed for any amount
 
+=======
+>>>>>>> a45f52b (payment-integrated)
                     // d. Stock check
                     foreach ($cartItems as $item) {
                         if (!$item->product->is_active || $item->product->stock_qty < $item->quantity) {
@@ -100,7 +107,11 @@ class OrderController extends Controller
 
                     // e. Generate Order Number
                     $dateStr = date('Ymd');
+<<<<<<< HEAD
                     $lastOrderCount = Order::whereDate('created_at', Carbon::today())->lockForUpdate()->count();
+=======
+                    $lastOrderCount = Order::whereDate('created_at', Carbon::today())->count();
+>>>>>>> a45f52b (payment-integrated)
                     $sequence = str_pad($lastOrderCount + 1, 5, '0', STR_PAD_LEFT);
                     $orderNumber = "TPH-{$dateStr}-{$sequence}";
 
@@ -110,7 +121,11 @@ class OrderController extends Controller
                         'user_id' => $user->id,
                         'address_id' => $address->id,
                         'status' => 'pending',
+<<<<<<< HEAD
                         'payment_method' => 'cod',
+=======
+                        'payment_method' => $request->payment_method,
+>>>>>>> a45f52b (payment-integrated)
                         'payment_status' => 'unpaid',
                         'subtotal' => $subtotal,
                         'discount' => $discount,
@@ -158,6 +173,7 @@ class OrderController extends Controller
                     OrderStatusHistory::create([
                         'order_id' => $order->id,
                         'status' => 'pending',
+<<<<<<< HEAD
                         'note' => 'Order placed via COD',
                     ]);
 
@@ -175,13 +191,103 @@ class OrderController extends Controller
                     dispatch(new SendSmsNotification($user->phone, $smsMessage));
 
                     return $this->response(true, 'Order placed successfully!', [
+=======
+                        'note' => $request->payment_method === 'cod' ? 'Order placed via COD' : 'Order placed via Cashfree',
+                    ]);
+
+                    // Handling Online Payment via Cashfree
+                    $paymentSessionId = null;
+                    if ($request->payment_method === 'cashfree') {
+                        $frontendUrl = rtrim(config('app.frontend_url'), '/');
+                        $paymentMethods = config('services.cashfree.payment_methods');
+
+                        $http = \Illuminate\Support\Facades\Http::withHeaders([
+                            'x-api-version' => config('services.cashfree.version', '2023-08-01'),
+                            'x-client-id' => config('services.cashfree.app_id'),
+                            'x-client-secret' => config('services.cashfree.secret_key'),
+                            'Content-Type' => 'application/json',
+                        ]);
+
+                        if (app()->environment('local')) {
+                            // Local Windows stacks can miss CA bundle; allow SSL bypass only in local env.
+                            $http = $http->withOptions(['verify' => false]);
+                        }
+
+                        $payload = [
+                            'order_id' => $order->order_number,
+                            'order_amount' => $order->grand_total,
+                            'order_currency' => 'INR',
+                            'customer_details' => [
+                                'customer_id' => (string) $user->id,
+                                'customer_email' => $user->email,
+                                'customer_phone' => $user->phone,
+                                'customer_name' => $user->name,
+                            ],
+                            'order_meta' => [
+                                'return_url' => $frontendUrl . '/payment-status?order_id={order_id}',
+                                'notify_url' => url('/api/v1/webhooks/cashfree'),
+                            ],
+                        ];
+
+                        if (!empty($paymentMethods)) {
+                            $payload['order_meta']['payment_methods'] = $paymentMethods;
+                        }
+
+                        $response = $http->post(
+                            config('services.cashfree.env') === 'test'
+                                ? 'https://sandbox.cashfree.com/pg/orders'
+                                : 'https://api.cashfree.com/pg/orders',
+                            $payload
+                        );
+
+                        if ($response->successful()) {
+                            $cfData = $response->json();
+                            $paymentSessionId = $cfData['payment_session_id'];
+                            $order->update([
+                                'cashfree_order_id' => $cfData['cf_order_id'],
+                                'cashfree_payment_session_id' => $paymentSessionId,
+                            ]);
+                        } else {
+                            $cfError = $response->json();
+                            $errorMessage = is_array($cfError) && isset($cfError['message'])
+                                ? $cfError['message']
+                                : $response->body();
+
+                            Log::error('Cashfree Order Creation Failed', [
+                                'response' => $response->body(),
+                                'order' => $order->order_number
+                            ]);
+                            throw new \Exception('Failed to initialize Cashfree payment: ' . $errorMessage);
+                        }
+                    } else {
+                        // COD Path: Finalize immediately
+                        // k. Clear Cart
+                        $user->cartItems()->delete();
+
+                        // l. Notifications
+                        Mail::to($user->email)->queue(new OrderConfirmationMail($order));
+
+                        $pinData = PinCode::where('pin', $address->pin)->first();
+                        $eddDays = $pinData ? $pinData->edd_days : 5;
+                        $eddDate = Carbon::now()->addDays($eddDays)->format('Y-m-d');
+
+                        $smsMessage = "Order Confirmed! Your order {$order->order_number} of Rs. {$order->grand_total} will be delivered by {$eddDate}. Please keep cash ready.";
+                        dispatch(new SendSmsNotification($user->phone, $smsMessage));
+                    }
+
+                    return $this->response(true, 'Order created successfully!', [
+>>>>>>> a45f52b (payment-integrated)
                         'order_id' => $order->id,
                         'order_number' => $order->order_number,
                         'status' => $order->status,
                         'payment_method' => $order->payment_method,
                         'payment_status' => $order->payment_status,
                         'grand_total' => $order->grand_total,
+<<<<<<< HEAD
                         'estimated_delivery' => $eddDate
+=======
+                        'payment_session_id' => $paymentSessionId,
+>>>>>>> a45f52b (payment-integrated)
                     ], null, 201);
                 });
         }

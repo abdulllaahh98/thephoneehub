@@ -3,13 +3,23 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+<<<<<<< HEAD
+=======
+use App\Http\Resources\ProductResource;
+use App\Http\Resources\ProductListResource;
+>>>>>>> a45f52b (payment-integrated)
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
     public function index(Request $request)
     {
+<<<<<<< HEAD
         $query = Product::query();
+=======
+        $query = Product::query()
+            ->with(['productImages', 'category', 'conditionGrade']);
+>>>>>>> a45f52b (payment-integrated)
 
         // Search logic using FULLTEXT index
         if ($request->has('q') && !empty($request->q)) {
@@ -48,12 +58,30 @@ class ProductController extends Controller
         $limit = $request->get('limit', 12);
         $products = $query->paginate($limit);
 
+<<<<<<< HEAD
         return response()->json($products);
+=======
+        return ProductListResource::collection($products);
+>>>>>>> a45f52b (payment-integrated)
     }
 
     public function show($id)
     {
+<<<<<<< HEAD
         $product = Product::findOrFail($id);
         return response()->json($product);
+=======
+        $product = Product::with([
+            'productImages',
+            'category',
+            'conditionGrade',
+            'productSpecs',
+            'productAccessories',
+            'productTags',
+            'productVariants'
+        ])->findOrFail($id);
+        
+        return new ProductResource($product);
+>>>>>>> a45f52b (payment-integrated)
     }
 }

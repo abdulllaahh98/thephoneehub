@@ -29,6 +29,10 @@ import AdminOrders from './pages/admin/AdminOrders';
 import AdminOrderDetail from './pages/admin/AdminOrderDetail';
 import AdminCoupons from './pages/admin/AdminCoupons';
 import AdminClaims from './pages/admin/AdminClaims';
+<<<<<<< HEAD
+=======
+import PaymentStatus from './pages/PaymentStatus';
+>>>>>>> a45f52b (payment-integrated)
 import ProtectedRoute from './components/auth/ProtectedRoute';
 
 import { Toaster } from 'react-hot-toast';
@@ -65,6 +69,10 @@ function App() {
             <Route path="/support" element={<Layout><SupportPage /></Layout>} />
             <Route path="/contact" element={<Layout><ContactPage /></Layout>} />
             <Route path="/track-order" element={<Layout><TrackOrderPage /></Layout>} />
+<<<<<<< HEAD
+=======
+            <Route path="/payment-status" element={<PaymentStatus />} />
+>>>>>>> a45f52b (payment-integrated)
 
             {/* Admin Routes - Open access (User Request) */}
             <Route path="/admin" element={<AdminLayout />}>

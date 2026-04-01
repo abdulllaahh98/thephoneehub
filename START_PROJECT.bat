@@ -38,7 +38,11 @@ if !errorlevel! equ 0 (
 
 :: 2. Start Backend
 echo [2/3] Starting Backend (Laravel)...
+<<<<<<< HEAD
 cd /d "c:\xampp\htdocs\anti-phone\backend"
+=======
+cd /d "c:\xampp\htdocs\thephonehub\backend"
+>>>>>>> a45f52b (payment-integrated)
 :: Check if port 8000 is occupied
 netstat -ano | findstr :8000 >nul
 if !errorlevel! equ 0 (
@@ -49,7 +53,11 @@ start "TPH-BACKEND" php artisan serve --host=127.0.0.1 --port=8000
 
 :: 3. Start Frontend
 echo [3/3] Starting Frontend (React)...
+<<<<<<< HEAD
 cd /d "c:\xampp\htdocs\anti-phone\frontend"
+=======
+cd /d "c:\xampp\htdocs\thephonehub\frontend"
+>>>>>>> a45f52b (payment-integrated)
 :: Check if port 5173 is occupied
 netstat -ano | findstr :5173 >nul
 if !errorlevel! equ 0 (
